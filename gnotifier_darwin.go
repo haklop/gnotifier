@@ -13,6 +13,6 @@ func (n *notifier) Push() error {
 	notification := gosxnotifier.NewNotification(n.Config.Message)
 	notification.Title = n.Config.Title
 
-	err := note.Push()
+	err = notification.Push()
 	return err
 }
