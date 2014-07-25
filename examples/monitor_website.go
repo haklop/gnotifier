@@ -47,6 +47,7 @@ func main() {
 
 		notification := gnotifier.Notification(result.url, message)
 		notification.GetConfig().Expiration = 2000
+		notification.GetConfig().ApplicationName = "monitor-app"
 		notification.Push()
 	}
 }

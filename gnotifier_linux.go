@@ -15,12 +15,9 @@ func (n *notifier) Push() error {
 		return err
 	}
 	obj := conn.Object("org.freedesktop.Notifications", "/org/freedesktop/Notifications")
-	call := obj.Call("org.freedesktop.Notifications.Notify", 0, "", uint32(0),
+	call := obj.Call("org.freedesktop.Notifications.Notify", 0, n.Config.ApplicationName, uint32(0),
 		"", n.Config.Title, n.Config.Message, []string{},
 		map[string]dbus.Variant{}, n.Config.Expiration)
-	if call.Err != nil {
-		return call.Err
-	}
 
-	return nil
+	return call.Err
 }
