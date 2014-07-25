@@ -17,6 +17,24 @@ func Test_Notification(t *testing.T) {
 	}
 }
 
+func Test_Notification_Title_Validity(t *testing.T) {
+	n := Notification("", "Hello")
+
+	err := n.Push()
+	if err == nil {
+		t.Error("Notification should trigger an error, title is mandatory")
+	}
+}
+
+func Test_Notification_Message_Validity(t *testing.T) {
+	n := Notification("Title", "")
+
+	err := n.Push()
+	if err == nil {
+		t.Error("Notification should trigger an error, message is mandatory")
+	}
+}
+
 func Test_Push(t *testing.T) {
 	n := Notification("Title!", "Testing Push")
 	err := n.Push()

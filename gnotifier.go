@@ -13,8 +13,9 @@ type GNotifier interface {
 
 // Config define the notification options
 type Config struct {
-	Title   string
-	Message string
+	Title      string
+	Message    string
+	Expiration int32
 }
 
 type notifier struct {
@@ -38,7 +39,7 @@ func (n *notifier) IsValid() error {
 
 // Notification is the builder
 func Notification(title, message string) GNotifier {
-	config := &Config{title, message}
+	config := &Config{title, message, 5000}
 	n := &notifier{Config: config}
 	return n
 }
