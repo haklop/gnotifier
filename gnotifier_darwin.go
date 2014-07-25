@@ -12,6 +12,7 @@ func (n *notifier) Push() error {
 
 	notification := gosxnotifier.NewNotification(n.Config.Message)
 	notification.Title = n.Config.Title
+	notification.Sound = gosxnotifier.Default
 
 	err = notification.Push()
 	return err
