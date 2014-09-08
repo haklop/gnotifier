@@ -29,7 +29,7 @@ func (c *Config) IsValid() error {
 	return nil
 }
 
-// Builder abstract the concrete function Notification
+// Builder abstracts the concrete function Notification
 type Builder func(title, message string) GNotifier
 
 type notifier struct {
@@ -93,10 +93,13 @@ func (n *recordingNotifier) Push() error {
 }
 
 // TestRecorder provides a way to verify the GNotifier api use
+// (not intended for production code)
 type TestRecorder struct {
 	Pushed []*Config
 }
 
+// NewTestRecorder constructs a new TestRecorder. Use its
+// Notification method as test Builder.
 func NewTestRecorder() *TestRecorder {
 	return &TestRecorder{[]*Config{}}
 }
