@@ -34,15 +34,6 @@ func Test_Notification_Message_Validity(t *testing.T) {
 	}
 }
 
-func Test_Push(t *testing.T) {
-	n := Notification("Title!", "Testing Push")
-	err := n.Push()
-
-	if err != nil {
-		t.Error("Test_Push failed with error: ", err)
-	}
-}
-
 func Test_Builder_Types(t *testing.T) {
 	var _ Builder = Notification
 	var _ Builder = NullNotification
