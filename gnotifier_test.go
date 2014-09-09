@@ -42,3 +42,22 @@ func Test_Push(t *testing.T) {
 		t.Error("Test_Push failed with error: ", err)
 	}
 }
+
+func Test_Builder_Types(t *testing.T) {
+	var _ Builder = Notification
+	var _ Builder = NullNotification
+}
+
+func Test_Records_A_Push(t *testing.T) {
+	r := NewTestRecorder()
+	var p Builder
+	p = r.Notification
+
+	n := p("title", "message")
+	n.GetConfig().Expiration = 1000
+	n.Push()
+
+	if len(r.Pushed) != 1 {
+		t.Fatal("Expected one message")
+	}
+}
